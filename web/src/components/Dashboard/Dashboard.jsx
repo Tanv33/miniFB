@@ -47,7 +47,7 @@ function Dashboard() {
   };
 
   useEffect(() => {
-    const socket = io("http://localhost:2000");
+    const socket = io(baseURL);
 
     socket.on("connect", function () {
       // console.log("connected");
