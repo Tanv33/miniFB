@@ -1,0 +1,120 @@
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.body {
+  font-family: arial;
+  font-size: 16px;
+  margin: 0;
+  background: #800020;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-blinking {
+  font-family: "Norican", cursive;
+  font-size: 130px;
+  color: White;
+}
+.text-blinking span {
+  animation: TextBlinking 3s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+.active {
+  color: #0080ff;
+  text-shadow: 0px 0px 20px #0652ff, 0px 0px 30px #0652ff, 0px 0px 40px #0652ff,
+    0px 0px 50px #0652ff;
+}
+.text-blinking span:nth-child(1) {
+  animation-delay: 0s;
+}
+.text-blinking span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.text-blinking span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.text-blinking span:nth-child(4) {
+  animation-delay: 0.6s;
+}
+.text-blinking span:nth-child(5) {
+  animation-delay: 0.8s;
+}
+.text-blinking span:nth-child(6) {
+  animation-delay: 1s;
+}
+.text-blinking span:nth-child(7) {
+  animation-delay: 1.2s;
+}
+.text-blinking span:nth-child(8) {
+  animation-delay: 1.4s;
+}
+.text-blinking span:nth-child(9) {
+  animation-delay: 1.6s;
+}
+.text-blinking span:nth-child(10) {
+  animation-delay: 1.8s;
+}
+.text-blinking span:nth-child(11) {
+  animation-delay: 2s;
+}
+.text-blinking span:nth-child(12) {
+  animation-delay: 2.2s;
+}
+.text-blinking span:nth-child(13) {
+  animation-delay: 2.4s;
+}
+.text-blinking span:nth-child(14) {
+  animation-delay: 2.6s;
+}
+.text-blinking span:nth-child(15) {
+  animation-delay: 2.8s;
+}
+
+@keyframes TextBlinking {
+  0% {
+    color: #1a3470;
+    text-shadow: none;
+  }
+  4% {
+    color: #0080ff;
+    text-shadow: 0px 0px 20px #0652ff, 0px 0px 30px #0652ff,
+      0px 0px 40px #0652ff, 0px 0px 50px #0652ff;
+  }
+  5% {
+    color: #1a3470;
+    text-shadow: none;
+  }
+  100% {
+    color: #1a3470;
+    text-shadow: none;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  /* .body{
+	font-family: arial;
+	font-size: 16px;
+} */
+
+  .text-blinking {
+    font-family: "Norican", cursive;
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 728px) {
+ 
+	.text-blinking {
+		font-family: "Norican", cursive;
+		font-size: 30px;
+	  }
+}

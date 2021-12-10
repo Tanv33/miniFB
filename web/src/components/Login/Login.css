@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.loginHeading {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.mainParent {
+  background: url(https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+}
+.parentChild {
+  width: 50vw;
+  height: 50vh;
+  align-self: center;
+}
+
+@media screen and (max-width: 425px) {
+  .parentChild {
+    width: 100%;
+    margin: 15px;
+  }
+}
+
+@media screen and (max-width: 728px) {
+  .parentChild {
+    width: 100%;
+    margin: 15px;
+  }
+}

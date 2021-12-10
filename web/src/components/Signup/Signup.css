@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.loginHeadingSign {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.mainParentSign {
+  background: url(https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  overflow: auto;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+.parentChildSign {
+  width: 50vw;
+  height: 50vh;
+}
+
+@media screen and (max-width: 425px) {
+  .parentChildSign {
+    width: 100%;
+    margin: 15px;
+  }
+}
+
+@media screen and (max-width: 728px) {
+  .parentChildSign {
+    width: 100%;
+    margin: 15px;
+  }
+}
