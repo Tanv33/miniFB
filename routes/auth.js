@@ -4,11 +4,14 @@ import { signup } from "../models/signup.js";
 import jwt from "jsonwebtoken";
 const SECRET = process.env.SECRET || "0900";
 
-
 const router = express.Router();
 
 router.get("/signupuser", (req, res) => {
   signup.find({}, (err, data) => {
+    if (err) {
+      res.send(err);
+      return;
+    }
     res.send(data);
   });
 });
@@ -55,13 +58,8 @@ router.post("/login", async (req, res) => {
     return;
   }
   signup.findOne({ email: email }, async (err, user) => {
-    // if (!user) {
-    //   res.send("Incorrect email");
-    //   return;
-    // }
     if (err) {
-      // res.status(500).send("Server error");
-      res.send("Incorrect email");
+      res.status(500).send("Database Error");
       return;
     } else {
       if (user) {
@@ -69,8 +67,9 @@ router.post("/login", async (req, res) => {
           // result === true
           // console.log(result);
           if (err) {
-            res.status(500).send("Server error");
+            res.status(500).send("Server Error");
             // console.log(err);
+            return;
           } else {
             if (result) {
               var token = jwt.sign(
@@ -92,11 +91,12 @@ router.post("/login", async (req, res) => {
               res.send(user);
               // console.log(user);
             } else {
-              res.send("Incorrect password");
+              res.status(401).send("Incorrect Password");
             }
           }
         });
       } else {
+        res.status(401).send("Email not found");
       }
     }
   });
