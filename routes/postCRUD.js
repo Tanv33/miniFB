@@ -1,19 +1,20 @@
 import express from "express";
 import { post } from "../models/post.js";
 import { signup } from "../models/signup.js";
-import { readFile } from "fs/promises";
-import { unlink } from "fs/promises";
 import { upload } from "../multer.js";
 import {
   ref,
   uploadBytesResumable,
   deleteObject,
   getDownloadURL,
+  uploadBytes,
 } from "firebase/storage";
 import { storage } from "../firebase.js";
 import jwt from "jsonwebtoken";
 import path from "path";
 import { socketInstance } from "../express.js";
+import { readFileSync } from "fs";
+import { unlinkSync } from "fs";
 
 const router = express.Router();
 const __dirname = path.resolve();
@@ -69,13 +70,22 @@ router.post("/posts", upload.any(), async (req, res) => {
     res.status(400).send("file is missing");
     return;
   }
+  console.log(req.files, req.body.text);
   if (req.files[0].size > 2000000) {
     res.status(400).send("file size should not be greater than 2MB");
     return;
   }
   try {
-    const file = await readFile(req.files[0].path);
-    const storageRef = ref(storage, "postImages/" + req.files[0].filename);
+    const file = readFileSync(req.files[0].path);
+    // console.log(storage);
+    const storageRef = ref(storage, `postImages/${req.files[0].filename}`);
+    // uploadBytes(storageRef, file)
+    //   .then((result) => {
+    //     console.log({ result });
+    //   })
+    //   .catch((err) => {
+    //     console.log({ err });
+    //   });
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
@@ -95,6 +105,7 @@ router.post("/posts", upload.any(), async (req, res) => {
         }
       },
       (error) => {
+        console.log(error);
         // A full list of error codes is available at
         // https://firebase.google.com/docs/storage/web/handle-errors
         switch (error.code) {
@@ -117,7 +128,7 @@ router.post("/posts", upload.any(), async (req, res) => {
         getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
           console.log("File available at", downloadURL);
           try {
-            await unlink(req.files[0].path);
+            unlinkSync(req.files[0].path);
             console.log("File Deleted");
             const newpost = await new post({
               text: req.body.text,
@@ -145,6 +156,7 @@ router.post("/posts", upload.any(), async (req, res) => {
       }
     );
   } catch (error) {
+    console.log(error);
     res.status(500).send("Internal Server Error");
   }
 });

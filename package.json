@@ -20,7 +20,7 @@
   "main": "express.js",
   "scripts": {
     "start": "node express",
-    "dev": "node express",
+    "dev": "node --watch express",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
